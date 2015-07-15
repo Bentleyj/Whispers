@@ -9,7 +9,7 @@
 #ifndef __Whispers__soundBeacon__
 #define __Whispers__soundBeacon__
 
-#define NUMPLAYERSPERBEACON 2
+#define NUMPLAYERSPERBEACON 3
 #define NUMSENDERSPERBEACON 4
 
 #include "ofMain.h"
@@ -46,6 +46,7 @@ public:
     void addPdVarToSend(float(*myMap)(float valToMap, float lowInput, float highInput, float lowOutput, float highOutput, bool clamp), string _name);
     
     int major;
+    
     smoothPlayer* players[NUMPLAYERSPERBEACON];
     ofxHistoryPlot* plots[NUMPLAYERSPERBEACON + NUMSENDERSPERBEACON];
     smoothSender* senders[NUMSENDERSPERBEACON];

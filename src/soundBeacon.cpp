@@ -126,9 +126,7 @@ void soundBeacon::display(int x, int y, int index = 0) {
     for(int i=0; i<NUMPLAYERSPERBEACON; i++) {
         plots[i]->draw(x, y, ofGetWidth() - 20, 100);
         ofSetColor(plots[i]->getColor());
-        ofDrawBitmapString(ofToString(players[i]->farBound), x, y + (i + 1) * 20);
     }
-    
 }
 
 void soundBeacon::pause(int index = 0) {

@@ -23,6 +23,7 @@ public:
     ofTrueTypeFont font;
     bool clicked;
     int alpha;
+    bool active;
 };
 
 #endif /* defined(__Whispers2__Button__) */

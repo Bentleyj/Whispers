@@ -40,7 +40,7 @@ public:
     bool isActive;
     Integratorf vol;
     bool playedOnce;
-    float minVol, maxVol, farBound, nearBound;
+    float minVol, nearBound, farBound, maxVol;
     ofSoundPlayer* player;
     ofxEasingQuad easeQuad;
 };

@@ -7,30 +7,32 @@
 #include "soundBeacon.h"
 #include "ofxPd.h"
 #include "Button.h"
+#include "ofxGui.h"
+
+#define NUMBEACONS 8
 
 class ofApp : public ofxiOSApp {
 	
-    public:
-        void setup();
-        void update();
-        void draw();
-        void exit();
+public:
+    void setup();
+    void update();
+    void draw();
+    void exit();
 	
-        void touchDown(ofTouchEventArgs & touch);
-        void touchMoved(ofTouchEventArgs & touch);
-        void touchUp(ofTouchEventArgs & touch);
-        void touchDoubleTap(ofTouchEventArgs & touch);
-        void touchCancelled(ofTouchEventArgs & touch);
+    void touchDown(ofTouchEventArgs & touch);
+    void touchMoved(ofTouchEventArgs & touch);
+    void touchUp(ofTouchEventArgs & touch);
+    void touchDoubleTap(ofTouchEventArgs & touch);
+    void touchCancelled(ofTouchEventArgs & touch);
 
-        void lostFocus();
-        void gotFocus();
-        void gotMemoryWarning();
-        void deviceOrientationChanged(int newOrientation);
-    
-//        void onAttractionChanged(float & newAttraction);
-//        void onDampingChanged(float & newDamping);
-        void setupAmbientBeacon(int major);
-        void setupTriggeredBeacon(int major);
+    void lostFocus();
+    void gotFocus();
+    void gotMemoryWarning();
+    void deviceOrientationChanged(int newOrientation);
+
+    void setupAmbientBeacon(int major);
+    void setupTriggeredBeacon(int major);
+    void paramChanged(ofAbstractParameter & param);
     
     void beginExperience();
     
@@ -47,6 +49,13 @@ class ofApp : public ofxiOSApp {
     
     ofxPd* pd;
     
+    ofxPanel * gui;
+    
+    ofParameter<float> farBounds[NUMBEACONS*NUMPLAYERSPERBEACON];
+    ofParameter<float> maxVols[NUMBEACONS*NUMPLAYERSPERBEACON];
+    
+    ofParameterGroup group;
+    
     smoothPlayer * intro;
     smoothPlayer * outro;
     ofImage image;
@@ -54,7 +63,12 @@ class ofApp : public ofxiOSApp {
     int numNarratives;
     bool active;
     
-    Button * button;
+    Button * start;
+    int alpha = 0;
+    
+    ofImage logo;
+    
+    ofTrueTypeFont font;
     
     const static int beaconMajors[];
 };

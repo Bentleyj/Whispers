@@ -79,24 +79,26 @@ void smoothPlayer::play() {
                 playedOnce = true;
                 return;
             }
+            bool blocked = false;
             for(auto gate : *gates) {
-                if(!gate->player->getIsPlaying()) {
-                    if(!ambient) {
-                        player->setVolume(maxVol);
-                        vol.set(maxVol);
-                    }
-                    else {
-                        player->setVolume(minVol);
-                        vol.set(minVol);
-                    }
-                    player->play();
-                    player->setPaused(false);
-                    vol.update();
-                    playedOnce = true;
-                    return;
-                } else {
-                    return;
+                if(gate->player->getIsPlaying()) {
+                    blocked = true;
                 }
+            }
+            if(!blocked) {
+                if(!ambient) {
+                    player->setVolume(maxVol);
+                    vol.set(maxVol);
+                }
+                else {
+                    player->setVolume(minVol);
+                    vol.set(minVol);
+                }
+                player->play();
+                player->setPaused(false);
+                vol.update();
+                playedOnce = true;
+                return;
             }
         }
     }
